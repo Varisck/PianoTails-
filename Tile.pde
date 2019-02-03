@@ -1,14 +1,13 @@
 class Tile{
 
-    int xdim;
-    int ydim;
+  final int xdim = width / 4;
+  final int ydim = 50;
 
   int x;
   int y;
 
   Tile(){
-    this.xdim = 20;
-    this.ydim = 50;
+
   }
 
 }
