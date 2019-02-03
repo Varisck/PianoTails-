@@ -2,15 +2,17 @@ ArrayList<Tile> Tiles = new ArrayList<Tile>();
 int velocity;
 int timing;
 boolean canSpawn;
+Score Punteggio;
 
 void setup(){
   size(400, 900);
+  Punteggio = new Score();
   Tiles.add(new Tile(300));
   velocity = 3;
 }
 
 void draw(){
-  background(255,255,255);
+  background(124,120,255);
   canSpawn = true;
   for(Tile t : Tiles){
     t.show();
@@ -21,9 +23,15 @@ void draw(){
   }
   remove();
   if(canSpawn){
+    timing ++;
     addTile();
   }
+  if(timing > 5){
+    timing = 0;
+    velocity +=1;
+  }
   ceckForLose();
+  Punteggio.show();
 }
 
 void ceckForLose(){
@@ -38,7 +46,6 @@ void addTile(){
   int randomNumber;
   randomNumber = (int) random(3);
   Tiles.add(new Tile(randomNumber * 100));
-
 }
 
 void remove(){
@@ -53,6 +60,7 @@ void ceck(int bound){
   for(Tile t : Tiles){
     if(!t.tapped && t.x == bound){
       t.tapped = true;
+      Punteggio.add();
       break;
     }else if(!t.tapped){
       break;
