@@ -13,14 +13,13 @@ void setup(){
 
 void draw(){
   background(124,120,255);
-  canSpawn = true;
   drawTails();
   remove();
   if(canSpawn){
-    timing ++;
+    timing ++;          //aumenta il contatore ogni volta che spawna una casella
     addTile();
   }
-  if(timing > 5){
+  if(timing > 5){       //ogni sei spawn aumenta la velocita del movimento delle caselle
     timing = 0;
     velocity +=1;
   }
@@ -28,11 +27,13 @@ void draw(){
   Punteggio.show();
 }
 
+//disegna le tails dell'array
 void drawTails(){
+  canSpawn = true;
   for(Tile t : Tiles){
     t.show();
     t.move(velocity);
-    if(t.y < -50){
+    if(t.y < -50){            //se anche solo una casella non è ancora visibile imposta il canSpawn a false
       canSpawn = false;
     }
   }
@@ -62,6 +63,7 @@ void remove(){
   }
 }
 
+//controlla se la casella più vicina alla fine corrisponde con il taso premuto
 void ceck(int bound){
   for(Tile t : Tiles){
     if(!t.tapped && t.x == bound){
