@@ -39,12 +39,16 @@ void drawTails(){
   }
 }
 
+void gameLost(int x){
+  fill(255, 0, 0);
+  rect(x, 0, width  / 4, height);
+  noLoop();
+}
+
 void ceckForLose(){
   for(Tile t : Tiles){
     if(t.y > height && !t.tapped){
-      fill(255, 0, 0);
-      rect(t.x, 0, t.xdim, height);
-      noLoop();
+      gameLost(t.x);
     }
   }
 }
@@ -71,6 +75,7 @@ void ceck(int bound){
       Punteggio.add();
       break;
     }else if(!t.tapped){
+      gameLost(bound);
       break;
     }
   }
