@@ -14,13 +14,7 @@ void setup(){
 void draw(){
   background(124,120,255);
   canSpawn = true;
-  for(Tile t : Tiles){
-    t.show();
-    t.move(velocity);
-    if(t.y < -50){
-      canSpawn = false;
-    }
-  }
+  drawTails();
   remove();
   if(canSpawn){
     timing ++;
@@ -34,9 +28,21 @@ void draw(){
   Punteggio.show();
 }
 
+void drawTails(){
+  for(Tile t : Tiles){
+    t.show();
+    t.move(velocity);
+    if(t.y < -50){
+      canSpawn = false;
+    }
+  }
+}
+
 void ceckForLose(){
   for(Tile t : Tiles){
     if(t.y > height && !t.tapped){
+      fill(255, 0, 0);
+      rect(t.x, 0, t.xdim, height);
       noLoop();
     }
   }
