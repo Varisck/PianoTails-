@@ -1,22 +1,43 @@
 ArrayList<Tile> Tiles = new ArrayList<Tile>();
 int velocity;
+int timing;
+boolean canSpawn;
 
 void setup(){
   size(400, 900);
-  Tiles.add(new Tile(100));
+  Tiles.add(new Tile(300));
   velocity = 3;
 }
 
 void draw(){
-
   background(255,255,255);
+  canSpawn = true;
   for(Tile t : Tiles){
     t.show();
     t.move(velocity);
+    if(t.y < -50){
+      canSpawn = false;
+    }
   }
-
   remove();
+  if(canSpawn){
+    addTile();
+  }
+  ceckForLose();
+}
 
+void ceckForLose(){
+  for(Tile t : Tiles){
+    if(t.y > height && !t.tapped){
+      noLoop();
+    }
+  }
+}
+
+void addTile(){
+  int randomNumber;
+  randomNumber = (int) random(3);
+  Tiles.add(new Tile(randomNumber * 100));
 
 }
 
@@ -28,22 +49,25 @@ void remove(){
   }
 }
 
+void ceck(int bound){
+  for(Tile t : Tiles){
+    if(!t.tapped && t.x == bound){
+      t.tapped = true;
+      break;
+    }else if(!t.tapped){
+      break;
+    }
+  }
+}
+
 void keyPressed(){
   if(key == '1'){
-    if(Tiles.get(Tiles.size() -1).x == 0){
-      Tiles.get(Tiles.size() -1).tapped = true;
-    }
+    ceck(0);
   }else if(key == '2'){
-    if(Tiles.get(Tiles.size() -1).x == 100){
-      Tiles.get(Tiles.size() -1).tapped = true;
-    }
+    ceck(100);
   }else if(key == '3'){
-    if(Tiles.get(Tiles.size() -1).x == 200){
-      Tiles.get(Tiles.size() -1).tapped = true;
-    }
+    ceck(200);
   }else if(key == '4'){
-    if(Tiles.get(Tiles.size() -1).x == 300){
-      Tiles.get(Tiles.size() -1).tapped = true;
-    }
+    ceck(300);
   }
 }
