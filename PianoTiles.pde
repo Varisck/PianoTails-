@@ -1,14 +1,15 @@
-ArrayList<Tile> Tiles = new ArrayList<Tile>();
+ArrayList<Tile> Tiles;
 int velocity;
 int timing;
 boolean canSpawn;
 Score Punteggio;
 
 void setup(){
-  size(400, 900);
+  Tiles = new ArrayList<Tile>();
   Punteggio = new Score();
-  Tiles.add(new Tile(300));
+  addTile();
   velocity = 3;
+  size(400, 900);
 }
 
 void draw(){
