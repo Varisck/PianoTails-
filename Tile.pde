@@ -1,1 +1,11 @@
-Ciao mi chiamo Jerry
+class Tile{
+
+  int x;
+  int y;
+
+
+  Tile(){
+
+  }
+
+}
