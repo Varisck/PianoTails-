@@ -1,8 +1,10 @@
 ArrayList<Tile> Tiles = new ArrayList<Tile>();
+int velocity;
 
 void setup(){
   size(400, 900);
   Tiles.add(new Tile(100));
+  velocity = 3;
 }
 
 void draw(){
@@ -10,15 +12,20 @@ void draw(){
   background(255,255,255);
   for(Tile t : Tiles){
     t.show();
-    t.move();
+    t.move(velocity);
   }
 
+  remove();
+
+
+}
+
+void remove(){
   for(int i = 0; i < Tiles.size(); i++){
     if(Tiles.get(i).delate()){
       Tiles.remove(i);
     }
   }
-
 }
 
 void keyPressed(){

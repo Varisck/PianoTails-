@@ -31,8 +31,8 @@ class Tile{
   }
 
 //muove la casella verticalmente
-  void move(){
-    this.y +=4;
+  void move(int velocity){
+    this.y += velocity;
   }
 
 //se la casella esce dallo schermo ed è sata premuta viene restituito true per essere eliminata
