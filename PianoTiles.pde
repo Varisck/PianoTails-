@@ -28,6 +28,13 @@ void draw(){
   Punteggio.show();
 }
 
+void reStart(){
+  Tiles = new ArrayList<Tile>();
+  Punteggio = new Score();
+  addTile();
+  velocity = 3;
+}
+
 //disegna le tails dell'array
 void drawTails(){
   canSpawn = true;
@@ -43,7 +50,8 @@ void drawTails(){
 void gameLost(int x){
   fill(255, 0, 0);
   rect(x, 0, width  / 4, height);
-  noLoop();
+  for(int i = 0; i < 999999999; i++){}
+  reStart();
 }
 
 void ceckForLose(){
@@ -83,13 +91,13 @@ void ceck(int bound){
 }
 
 void keyPressed(){
-  if(key == '1'){
+  if(key == '1' || key == 'w'){
     ceck(0);
-  }else if(key == '2'){
+  }else if(key == '2' || key == 'a'){
     ceck(100);
-  }else if(key == '3'){
+  }else if(key == '3' || key == 's'){
     ceck(200);
-  }else if(key == '4'){
+  }else if(key == '4' || key == 'd'){
     ceck(300);
   }
 }
