@@ -64,7 +64,7 @@ void ceckForLose(){
 
 void addTile(){
   int randomNumber;
-  randomNumber = (int) random(3);
+  randomNumber = (int) random(4);
   Tiles.add(new Tile(randomNumber * 100));
 }
 
